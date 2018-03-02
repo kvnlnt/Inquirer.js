@@ -11,6 +11,14 @@ describe('Choices collection', function() {
     expect(choices.getChoice(1)).to.be.instanceOf(Choice);
   });
 
+  it('should create Choice object from function', function() {
+    var choices = new Choices(function() {
+      return ['bar', { name: 'foo' }];
+    });
+    expect(choices.getChoice(0)).to.be.instanceOf(Choice);
+    expect(choices.getChoice(1)).to.be.instanceOf(Choice);
+  });
+
   it('should not process Separator object', function() {
     var sep = new inquirer.Separator();
     var choices = new Choices(['Bar', sep]);
